@@ -39,12 +39,12 @@ class Database {
       }
     });
   }
-  openConnection() {
-    this.connection.connect((error) => {
-      if (error) throw error;
-      console.log("Connected to MySQL database!");
-    });
-  }
+//   openConnection() {
+//     this.connection.connect((error) => {
+//       if (error) throw error;
+//       console.log("Connected to MySQL database!");
+//     });
+//   }
   query(query) {
     return new Promise((resolve, reject) => {
       this.connection.query(query, (error, result) => {
@@ -53,26 +53,26 @@ class Database {
       });
     });
   }
-  closeConnection() {
-    this.connection.end((err) => {
-      if (err) {
-        return console.log("error:" + err.message);
-      }
-      console.log("Close the database connection.");
-    });
-  }
+//   closeConnection() {
+//     this.connection.end((err) => {
+//       if (err) {
+//         return console.log("error:" + err.message);
+//       }
+//       console.log("Close the database connection.");
+//     });
+//   }
 }
 
 const connection = new Database();
 
 app.get("/api/data", async (req, res) => {
   try {
-    connection.openConnection();
+    // connection.openConnection();
     const result = await connection.query("SELECT * FROM t_users");
     let parsedResult = JSON.parse(result);
     console.log(parsedResult);
     res.json(parsedResult);
-    connection.closeConnection();
+    // connection.closeConnection();
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
