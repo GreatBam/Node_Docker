@@ -8,11 +8,35 @@ app.use(cors());
 
 class Database {
   constructor() {
+    this.initConnection();
+  }
+
+  initConnection() {
     this.connection = mysql.createConnection({
       host: process.env.DB_HOST,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
+    });
+    this.connection.connect((err) => {
+      if (err) {
+        console.error("Error connecting:", err.stack);
+        setTimeout(() => this.initConnection(), 2000);
+      } else {
+        console.log("Connected to MySQL database.");
+      }
+    });
+    this.connection.on("error", (err) => {
+      if (err.code === "PROTOCOL_CONNECTION_LOST") {
+        console.error("Database connection was closed.");
+        this.initConnection();
+      }
+      if (err.code === "ER_CON_COUNT_ERROR") {
+        console.error("Database has too many connections.");
+      }
+      if (err.code === "ECONNREFUSED") {
+        console.error("Database connection was refused.");
+      }
     });
   }
   openConnection() {
@@ -56,6 +80,5 @@ app.get("/api/data", async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}/`);
-  });
-  
+  console.log(`Server running on http://localhost:${port}/`);
+});
