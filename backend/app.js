@@ -38,3 +38,6 @@ class Database {
     });
   }
 }
+
+const connection = new Database();
+
