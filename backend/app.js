@@ -43,11 +43,11 @@ const connection = new Database();
 
 app.get("/api/data", async (req, res) => {
   try {
-    connection.open();
+    connection.openConnection();
     const result = await connection.query("SELECT * FROM t_users");
     let parsedResult = JSON.parse(result);
     res.json(parsedResult);
-    connection.close();
+    connection.closeConnection();
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
