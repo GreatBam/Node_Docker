@@ -64,6 +64,7 @@ class Database {
 }
 
 const connection = new Database();
+connection.initConnection();
 
 app.get("/api/data", async (req, res) => {
   try {
