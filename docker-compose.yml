@@ -8,3 +8,7 @@ services:
         - ./frontend:/usr/share/nginx/html
       depends_on:
         - db
+    backend:
+      build: ./backend
+      ports:
+        - '3000:3000'
