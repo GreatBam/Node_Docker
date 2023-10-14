@@ -21,4 +21,12 @@ class Database {
       console.log("Connected to MySQL database!");
     });
   }
+  query(query) {
+    return new Promise((resolve, reject) => {
+      this.connection.query(query, (error, result) => {
+        if (error) reject(error);
+        else resolve(JSON.stringify(result));
+      });
+    });
+  }
 }
