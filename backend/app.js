@@ -46,6 +46,7 @@ app.get("/api/data", async (req, res) => {
     connection.openConnection();
     const result = await connection.query("SELECT * FROM t_users");
     let parsedResult = JSON.parse(result);
+    console.log(parsedResult);
     res.json(parsedResult);
     connection.closeConnection();
   } catch (error) {
