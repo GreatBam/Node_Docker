@@ -24,3 +24,5 @@ services:
         MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       volumes:
         - node_backup:/var/lib/mysql
+volumes:
+  node_backup:
