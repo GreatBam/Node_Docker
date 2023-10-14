@@ -1,0 +1,14 @@
+{
+    "name": "my-backend",
+    "version": "1.0.0",
+    "description": "Backend server for my project",
+    "main": "app.js",
+    "scripts": {
+      "start": "node app.js"
+    },
+    "dependencies": {
+      "express": "^4.17.1",
+      "mysql": "^2.18.1"
+    }
+  }
+  
