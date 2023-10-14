@@ -29,4 +29,12 @@ class Database {
       });
     });
   }
+  closeConnection() {
+    this.connection.end((err) => {
+      if (err) {
+        return console.log("error:" + err.message);
+      }
+      console.log("Close the database connection.");
+    });
+  }
 }
