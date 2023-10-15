@@ -66,6 +66,19 @@ app.get("/api/data", async (req, res) => {
   }
 });
 
+app.get("/api/data/:userId", async (req, res) => {
+  try {
+    const userId = req.params.userId; // Get userId from path params
+    const query = `SELECT * FROM t_users WHERE id=${userId}`;
+    const result = await connection.query(query);
+    let parsedResult = JSON.parse(result);
+    res.json(parsedResult);
+  } catch (error) {
+    console.error("An error occurred:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 app.post("/api/adduser", async (req, res) => {
   const { name, lastname, dob } = req.body;
 
