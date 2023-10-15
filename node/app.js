@@ -66,6 +66,26 @@ app.get("/api/data", async (req, res) => {
   }
 });
 
+app.post("/api/adduser", async (req, res) => {
+  const { name, lastname, dob } = req.body;
+
+  if (!name || !lastname || !dob) {
+    return res
+      .status(400)
+      .json({ error: "Name, lastname and DOB are required" });
+  }
+
+  const addUserQuery = `INSERT INTO t_users (userName, userLastname, userDob) VALUES ('${name}', '${lastname}', '${dob}')`;
+
+  try {
+    await connection.query(addUserQuery);
+    res.json({ message: "User added successfully!" });
+  } catch (error) {
+    console.error("An error occurred:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}/`);
 });
