@@ -30,10 +30,9 @@ async function addUser(name, lastname, dob) {
   }
 }
 
-addUserButton.onclick = (
-  name = "John",
-  lastname = "Doe",
-  dob = "1990-01-01"
-) => {
+addUserButton.onclick = () => {
+  const name = document.getElementById("name").value;
+  const lastname = document.getElementById("lastname").value;
+  const dob = document.getElementById("dob").value;
   addUser(name, lastname, dob);
 };
