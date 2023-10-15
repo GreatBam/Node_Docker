@@ -3,8 +3,8 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
-require("dotenv").config();
 const port = 3000;
+require("dotenv").config();
 app.use(bodyParser.json());
 app.use(cors());
 
