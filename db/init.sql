@@ -9,4 +9,4 @@ CREATE TABLE `Data`.`t_users` (
   PRIMARY KEY (`idUser`));
 
 INSERT INTO t_users (idUser, userName, userLastname, userDob)
-VALUES (1, 'Great', 'Bam', '1987-12-28');
+VALUES (1, 'Jonathan', 'Gabioud', '1987-12-28');
