@@ -66,10 +66,10 @@ app.get("/api/data", async (req, res) => {
   }
 });
 
-app.get("/api/data/:userId", async (req, res) => {
+app.get("/api/data/:idUser", async (req, res) => {
   try {
-    const userId = req.params.userId; // Get userId from path params
-    const query = `SELECT * FROM t_users WHERE id=${userId}`;
+    const userId = req.params.idUser;
+    const query = `SELECT * FROM t_users WHERE idUser=${userId}`;
     const result = await connection.query(query);
     let parsedResult = JSON.parse(result);
     res.json(parsedResult);
