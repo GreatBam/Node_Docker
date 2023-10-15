@@ -2,10 +2,10 @@ const bodyParser = require("body-parser");
 const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
-require("dotenv").config();
-app.use(bodyParser.json());
 const app = express();
+require("dotenv").config();
 const port = 3000;
+app.use(bodyParser.json());
 app.use(cors());
 
 class Database {
