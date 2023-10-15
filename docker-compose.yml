@@ -8,10 +8,10 @@ services:
         - ./html:/usr/share/nginx/html
       depends_on:
         - db
-    backend:
-      build: ./backend
+    node:
+      build: ./node
       env_file:
-        - ./backend/.env
+        - ./node/.env
       ports:
         - '3000:3000'
     db:
