@@ -64,7 +64,7 @@ signupButton.onclick = () => {
   const userlastname = document.getElementById("userlastname").value;
   const email = document.getElementById("mailup").value;
   const password = document.getElementById("passwdup").value;
-  console.log(username, userlastname, userdob, email, password);
+  console.log(username, userlastname, email, password);
   addAccount(username, userlastname, email, password);
 };
 
