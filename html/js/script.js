@@ -1,4 +1,5 @@
 const addUserButton = document.getElementById("addUserButton");
+const signupButton = document.getElementById("signupButton");
 const siginButton = document.getElementById("siginButton");
 
 fetch("http://localhost:3000/api/data")
@@ -62,8 +63,8 @@ async function addAccount(email, password) {
 //   addUser(name, lastname, dob);
 // };
 
-siginButton.onclick = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("passwd").value;
-  addAccount(email, password);
-};
+// signupButton.onclick = () => {
+//   const email = document.getElementById("email").value;
+//   const password = document.getElementById("passwd").value;
+//   addAccount(email, password);
+// };
