@@ -82,9 +82,9 @@ app.get("/api/data/:idUser", async (req, res) => {
 });
 
 app.post("/api/signup", async (req, res) => {
-  const { name, lastname, dob, mail, password } = req.body;
+  const { name, lastname, mail, password } = req.body;
 
-  if (!name || !lastname || !dob || !mail || !password) {
+  if (!name || !lastname || !mail || !password) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -101,7 +101,7 @@ app.post("/api/signup", async (req, res) => {
 
   const encryptedPassword = await bcrypt.hash(password, salt);
 
-  const addUserQuery = `INSERT INTO t_users (userName, userLastname, userDob, userMail, userPassword) VALUES ('${name}', '${lastname}', '${dob}', '${mail}', '${encryptedPassword}')`;
+  const addUserQuery = `INSERT INTO t_users (userName, userLastname, userMail, userPassword) VALUES ('${name}', '${lastname}', '${mail}', '${encryptedPassword}')`;
 
   try {
     await connection.query(addUserQuery);

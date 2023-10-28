@@ -7,13 +7,12 @@ fetch("http://localhost:3000/api/data")
   .then((data) => console.log(data))
   .catch((error) => console.error("An error occurred:", error));
 
-async function addAccount(name, lastname, dob, mail, password) {
+async function addAccount(name, lastname, mail, password) {
   const url = "http://localhost:3000/api/signup";
 
   const userData = {
     name: name,
     lastname: lastname,
-    dob: dob,
     mail: mail,
     password: password,
   };
@@ -60,18 +59,17 @@ async function Login(mail, password) {
 }
 
 signupButton.onclick = () => {
-    console.log("signupButton.onclick");
-    const username = document.getElementById("username").value;
-    const userlastname = document.getElementById("userlastname").value;
-    const userdob = document.getElementById("userdob").value;
-    const email = document.getElementById("mailup").value;
-    const password = document.getElementById("passwdup").value;
-    console.log(username, userlastname, userdob, email, password);
-    addAccount(username, userlastname, userdob, email, password);
+  console.log("signupButton.onclick");
+  const username = document.getElementById("username").value;
+  const userlastname = document.getElementById("userlastname").value;
+  const email = document.getElementById("mailup").value;
+  const password = document.getElementById("passwdup").value;
+  console.log(username, userlastname, userdob, email, password);
+  addAccount(username, userlastname, email, password);
 };
 
 siginButton.onclick = () => {
-    console.log("signinButton.onclick");
+  console.log("signinButton.onclick");
   const email = document.getElementById("mailin").value;
   const password = document.getElementById("passwdin").value;
   console.log(email, password);
