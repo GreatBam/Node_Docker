@@ -83,7 +83,6 @@ app.get("/api/data/:idUser", async (req, res) => {
 
 app.post("/api/signup", async (req, res) => {
   const { name, lastname, mail, password } = req.body;
-  console.log("signup");
 
   if (!name || !lastname || !mail || !password) {
     return res.status(400).json({ error: "All fields are required" });
@@ -91,10 +90,8 @@ app.post("/api/signup", async (req, res) => {
 
   const checkIfExist = `SELECT userPassword FROM t_users WHERE userMail='${mail}'`;
   try {
-    let testMail = await connection.query(checkIfExist);
-    console.log("Test mail :", testMail);
+    const testMail = await connection.query(checkIfExist);
     if (testMail.length > 0) {
-      console.log(testMail.length);
       return res.status(400).json({ error: "Email already exists" });
     }
   } catch (error) {
