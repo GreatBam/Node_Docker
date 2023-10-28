@@ -139,7 +139,13 @@ app.post("/api/signin", async (req, res) => {
     res.status(500).json({ error: "An error occurred" });
   }
   
+  const decryptedPassword = await bcrypt.compare(password, hashedPassword);
 
+  if (decryptedPassword) {
+    res.json({ message: "Login successful!" });
+  } else {
+    res.status(401).json({ error: "Invalid credentials" });
+  }
 });
 
 app.listen(port, () => {
