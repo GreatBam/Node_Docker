@@ -33,7 +33,7 @@ async function addUser(name, lastname, dob) {
 }
 
 async function addAccount(email, password) {
-  const url = "http://localhost:3000/api/signin";
+  const url = "http://localhost:3000/api/signup";
   console.log('enter sigin frontend function')
 
   const userData = {

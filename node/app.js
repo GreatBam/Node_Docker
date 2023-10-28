@@ -101,7 +101,7 @@ app.post("/api/adduser", async (req, res) => {
   }
 });
 
-app.post("/api/signin", async (req, res) => {
+app.post("/api/signup", async (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
