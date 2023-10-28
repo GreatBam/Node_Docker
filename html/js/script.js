@@ -66,7 +66,7 @@ async function addAccount(email, password) {
 
 siginButton.onclick = () => {
   console.log('sigin button clicked')
-  const email = document.getElementById("mail").value;
+  const email = document.getElementById("email").value;
   const password = document.getElementById("passwd").value;
   addAccount(email, password);
 };
