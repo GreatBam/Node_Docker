@@ -124,6 +124,8 @@ app.post("/api/signup", async (req, res) => {
 app.post("/api/signin", async (req, res) => {
   const { email, password } = req.body;
 
+  let hashedPassword = "";
+
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
@@ -131,9 +133,9 @@ app.post("/api/signin", async (req, res) => {
   const getPassword = `SELECT logPassword FROM t_logs WHERE logMail='${email}'`;
   
   try {
-    const result = await connection.query("SELECT * FROM t_users");
-    let hashedPassword = JSON.parse(result);
-    console.log(parsedResult);
+    const result = await connection.query(getPassword);
+    hashedPassword = JSON.parse(result);
+    console.log(hashedPassword);
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
