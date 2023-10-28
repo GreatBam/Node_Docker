@@ -88,7 +88,7 @@ app.post("/api/signup", async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const getPassword = `SELECT userMail FROM t_users WHERE userMail='${email}'`;
+  const getPassword = `SELECT userMail FROM t_users WHERE userMail='${mail}'`;
   try {
     const result = await connection.query(getPassword);
     if (result.length > 0) {
@@ -113,15 +113,15 @@ app.post("/api/signup", async (req, res) => {
 });
 
 app.post("/api/signin", async (req, res) => {
-  const { email, password } = req.body;
+  const { mail, password } = req.body;
 
   let hashedPassword = "";
 
-  if (!email || !password) {
+  if (!mail || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
 
-  const getPassword = `SELECT userPassword FROM t_users WHERE userMail='${email}'`;
+  const getPassword = `SELECT userPassword FROM t_users WHERE userMail='${mail}'`;
 
   try {
     const result = await connection.query(getPassword);

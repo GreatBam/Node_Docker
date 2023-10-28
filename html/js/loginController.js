@@ -7,11 +7,14 @@ fetch("http://localhost:3000/api/data")
   .then((data) => console.log(data))
   .catch((error) => console.error("An error occurred:", error));
 
-async function addAccount(email, password) {
+async function addAccount(name, lastname, dob, mail, password) {
   const url = "http://localhost:3000/api/signup";
 
   const userData = {
-    email: email,
+    name: name,
+    lastname: lastname,
+    dob: dob,
+    mail: mail,
     password: password,
   };
 
@@ -31,11 +34,11 @@ async function addAccount(email, password) {
   }
 }
 
-async function Login(email, password) {
+async function Login(mail, password) {
   const url = "http://localhost:3000/api/signin";
 
   const userData = {
-    email: email,
+    mail: mail,
     password: password,
   };
 
@@ -60,13 +63,13 @@ signupButton.onclick = () => {
   const username = document.getElementById("username").value;
   const userlastname = document.getElementById("userlastname").value;
   const userdob = document.getElementById("userdob").value;
-  const email = document.getElementById("emailup").value;
+  const email = document.getElementById("mailup").value;
   const password = document.getElementById("passwdup").value;
   addAccount(username, userlastname, userdob, email, password);
 };
 
 siginButton.onclick = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("passwd").value;
+  const email = document.getElementById("mailin").value;
+  const password = document.getElementById("passwdin").value;
   Login(email, password);
 };
