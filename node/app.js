@@ -81,39 +81,30 @@ app.get("/api/data/:idUser", async (req, res) => {
   }
 });
 
-app.post("/api/adduser", async (req, res) => {
-  const { name, lastname, dob } = req.body;
+app.post("/api/signup", async (req, res) => {
+  const { name, lastname, dob, mail, password } = req.body;
 
-  if (!name || !lastname || !dob) {
-    return res
-      .status(400)
-      .json({ error: "Name, lastname and DOB are required" });
+  if (!name || !lastname || !dob || !mail || !password) {
+    return res.status(400).json({ error: "All fields are required" });
   }
 
-  const addUserQuery = `INSERT INTO t_users (userName, userLastname, userDob) VALUES ('${name}', '${lastname}', '${dob}')`;
-
+  const getPassword = `SELECT userMail FROM t_users WHERE userMail='${email}'`;
   try {
-    await connection.query(addUserQuery);
-    res.json({ message: "User added successfully!" });
+    const result = await connection.query(getPassword);
+    if (result.length > 0) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
   }
-});
-
-app.post("/api/signup", async (req, res) => {
-  const { email, password } = req.body;
-
-  if (!email || !password) {
-    return res.status(400).json({ error: "Email and password are required" });
-  }
 
   const encryptedPassword = await bcrypt.hash(password, salt);
 
-  const insertAccount = `INSERT INTO t_logs (logMail, logPassword) VALUES ('${email}', '${encryptedPassword}')`;
+  const addUserQuery = `INSERT INTO t_users (userName, userLastname, userDob, userMail, userPassword) VALUES ('${name}', '${lastname}', '${dob}', '${mail}', '${encryptedPassword}')`;
 
   try {
-    await connection.query(insertAccount);
+    await connection.query(addUserQuery);
     res.json({ message: "Account created successfully!" });
   } catch (error) {
     console.error("An error occurred:", error);
@@ -130,8 +121,8 @@ app.post("/api/signin", async (req, res) => {
     return res.status(400).json({ error: "Email and password are required" });
   }
 
-  const getPassword = `SELECT logPassword FROM t_logs WHERE logMail='${email}'`;
-  
+  const getPassword = `SELECT userPassword FROM t_users WHERE userMail='${email}'`;
+
   try {
     const result = await connection.query(getPassword);
     hashedPassword = JSON.parse(result);
@@ -140,8 +131,11 @@ app.post("/api/signin", async (req, res) => {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
   }
-  
-  const decryptedPassword = await bcrypt.compare(password, hashedPassword[0].logPassword);
+
+  const decryptedPassword = await bcrypt.compare(
+    password,
+    hashedPassword[0].logPassword
+  );
 
   if (decryptedPassword) {
     res.json({ message: "Login successful!" });
