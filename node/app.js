@@ -109,8 +109,9 @@ app.post("/api/signin", async (req, res) => {
   }
 
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
+  const date = new Date();
 
-  const insertAccount = `INSERT INTO t_logs (email, password) VALUES ('${email}), ('${encryptedPassword}')`;
+  const insertAccount = `INSERT INTO t_logs (logMail, logPassword, creationDate) VALUES ('${email}, '${encryptedPassword}', ${date})`;
 
   try {
     await connection.query(insertAccount);

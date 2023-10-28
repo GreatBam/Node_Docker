@@ -1,5 +1,6 @@
 const addUserButton = document.getElementById("addUserButton");
 const siginButton = document.getElementById("siginButton");
+console.log("test")
 
 fetch("http://localhost:3000/api/data")
   .then((response) => response.json())
@@ -31,11 +32,12 @@ async function addUser(name, lastname, dob) {
   }
 }
 
-async function addUser(mail, password) {
+async function addAccount(email, password) {
   const url = "http://localhost:3000/api/signin";
+  console.log('enter sigin frontend function')
 
   const userData = {
-    mail: mail,
+    email: email,
     password: password,
   };
 
@@ -55,15 +57,16 @@ async function addUser(mail, password) {
   }
 }
 
-addUserButton.onclick = () => {
-  const name = document.getElementById("username").value;
-  const lastname = document.getElementById("userlastname").value;
-  const dob = document.getElementById("userdob").value;
-  addUser(name, lastname, dob);
-};
+// addUserButton.onclick = () => {
+//   const name = document.getElementById("username").value;
+//   const lastname = document.getElementById("userlastname").value;
+//   const dob = document.getElementById("userdob").value;
+//   addUser(name, lastname, dob);
+// };
 
 siginButton.onclick = () => {
-  const mail = document.getElementById("mail").value;
+  console.log('sigin button clicked')
+  const email = document.getElementById("mail").value;
   const password = document.getElementById("passwd").value;
-  addUser(mail, password, dob);
+  addAccount(email, password);
 };
