@@ -111,6 +111,14 @@ app.post("/api/signin", async (req, res) => {
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
   const insertAccount = `INSERT INTO t_logs (email, password) VALUES ('${email}), ('${encryptedPassword}')`;
+
+  try {
+    await connection.query(insertAccount);
+    res.json({ message: "Account created successfully!" });
+  } catch (error) {
+    console.error("An error occurred:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 app.listen(port, () => {
