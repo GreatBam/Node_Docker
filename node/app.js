@@ -3,6 +3,8 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
+const bcrypt = require('bcrypt');
+const salt = 10;
 const port = 3000;
 require("dotenv").config();
 app.use(bodyParser.json());
