@@ -108,8 +108,9 @@ app.post("/api/signin", async (req, res) => {
     return res.status(400).json({ error: "Email and password are required" });
   }
 
-  const insertAccount = `INSERT INTO t_logs (email, password) VALUES ('${email}), ('${password}')`;
+  const encryptedPassword = await bcrypt.hash(password, saltRounds);
 
+  const insertAccount = `INSERT INTO t_logs (email, password) VALUES ('${email}), ('${encryptedPassword}')`;
 });
 
 app.listen(port, () => {
