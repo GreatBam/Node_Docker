@@ -32,3 +32,9 @@ body {
   color: white;
   font-size: 16px;
 }
+
+.toggle-button {
+  display: flex;
+  flex-direction: row;
+  color: blue;
+}
