@@ -68,3 +68,9 @@ async function addAccount(email, password) {
 //   const password = document.getElementById("passwd").value;
 //   addAccount(email, password);
 // };
+
+siginButton.onclick = () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("passwd").value;
+  addAccount(email, password);
+};
