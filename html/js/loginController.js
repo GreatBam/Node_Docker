@@ -74,7 +74,8 @@ async function Login(email, password) {
 
   if (response.ok) {
     const result = await response.json();
-    console.log("User added successfully!", result);
+    console.log("Successfully loged in!", result);
+    window.location.href = "http://localhost:3000/web/home.html";
   } else {
     console.log("Failed to add user");
   }
