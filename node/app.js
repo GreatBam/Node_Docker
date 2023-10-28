@@ -47,7 +47,7 @@ class Database {
     return new Promise((resolve, reject) => {
       this.connection.query(query, (error, result) => {
         if (error) reject(error);
-        else resolve(JSON.stringify(result));
+        else resolve(result);
       });
     });
   }
@@ -89,11 +89,12 @@ app.post("/api/signup", async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const checkIfExist = `SELECT * FROM t_users WHERE userMail='${mail}'`;
+  const checkIfExist = `SELECT userPassword FROM t_users WHERE userMail='${mail}'`;
   try {
-    const result = await connection.query(checkIfExist);
-    if (result.length > 0) {
-      console.log(result);
+    let testMail = await connection.query(checkIfExist);
+    console.log("Test mail :", testMail);
+    if (testMail.length > 0) {
+      console.log(testMail.length);
       return res.status(400).json({ error: "Email already exists" });
     }
   } catch (error) {
@@ -110,7 +111,7 @@ app.post("/api/signup", async (req, res) => {
     res.json({ message: "Account created successfully!" });
   } catch (error) {
     console.error("An error occurred:", error);
-    res.status(500).json({ error: "An error occurred" });
+    res.status(500).json({ error: "Fail to create account!" });
   }
 });
 
