@@ -121,6 +121,27 @@ app.post("/api/signup", async (req, res) => {
   }
 });
 
+app.post("/api/signin", async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({ error: "Email and password are required" });
+  }
+
+  const getPassword = `SELECT logPassword FROM t_logs WHERE logMail='${email}'`;
+  
+  try {
+    const result = await connection.query("SELECT * FROM t_users");
+    let hashedPassword = JSON.parse(result);
+    console.log(parsedResult);
+  } catch (error) {
+    console.error("An error occurred:", error);
+    res.status(500).json({ error: "An error occurred" });
+  }
+  
+
+});
+
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}/`);
 });
