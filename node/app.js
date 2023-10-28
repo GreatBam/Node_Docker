@@ -3,7 +3,7 @@ const express = require("express");
 const mysql = require("mysql");
 const cors = require("cors");
 const app = express();
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 const salt = 10;
 const port = 3000;
 require("dotenv").config();
@@ -99,6 +99,11 @@ app.post("/api/adduser", async (req, res) => {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
   }
+});
+
+app.post("/api/signin", async (req, res) => {
+  const { email, password } = req.body;
+
 });
 
 app.listen(port, () => {
