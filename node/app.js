@@ -108,7 +108,7 @@ app.post("/api/signin", async (req, res) => {
     return res.status(400).json({ error: "Email and password are required" });
   }
 
-  const encryptedPassword = await bcrypt.hash(password, saltRounds);
+  const encryptedPassword = await bcrypt.hash(password, salt);
 
   const insertAccount = `INSERT INTO t_logs (logMail, logPassword) VALUES ('${email}', '${encryptedPassword}')`;
 
