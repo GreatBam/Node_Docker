@@ -62,3 +62,8 @@ addUserButton.onclick = () => {
   addUser(name, lastname, dob);
 };
 
+siginButton.onclick = () => {
+  const mail = document.getElementById("mail").value;
+  const password = document.getElementById("passwd").value;
+  addUser(mail, password, dob);
+};
