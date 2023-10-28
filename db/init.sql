@@ -10,3 +10,13 @@ CREATE TABLE `Data`.`t_users` (
 
 INSERT INTO t_users (idUser, userName, userLastname, userDob)
 VALUES (1, 'Jonathan', 'Gabioud', '1987-12-28');
+
+CREATE TABLE `Data`.`t_logs` (
+  `idLog` INT NOT NULL AUTO_INCREMENT,
+  `logMail` VARCHAR(255) NOT NULL,
+  `logPassword` VARCHAR(255) NOT NULL,
+  `creationDate` DATETIME NOT NULL,
+  `FKidUser` INT NOT NULL,
+  PRIMARY KEY (`idLog`),
+  FOREIGN KEY (FKidUser) REFERENCES t_users(idUser)
+);
