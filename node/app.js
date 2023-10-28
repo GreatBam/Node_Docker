@@ -135,13 +135,13 @@ app.post("/api/signin", async (req, res) => {
   try {
     const result = await connection.query(getPassword);
     hashedPassword = JSON.parse(result);
-    console.log(hashedPassword);
+    console.log(hashedPassword[0].logPassword);
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
   }
   
-  const decryptedPassword = await bcrypt.compare(password, hashedPassword);
+  const decryptedPassword = await bcrypt.compare(password, hashedPassword[0].logPassword);
 
   if (decryptedPassword) {
     res.json({ message: "Login successful!" });
