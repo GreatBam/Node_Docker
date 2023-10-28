@@ -122,11 +122,14 @@ app.post("/api/signin", async (req, res) => {
   }
 
   const getPassword = `SELECT userPassword FROM t_users WHERE userMail='${mail}'`;
-
+  
   try {
     const result = await connection.query(getPassword);
+    if (result.length === 0) {
+      return res.status(400).json({ error: "Email doesn't exists" });
+    }
     hashedPassword = JSON.parse(result);
-    console.log(hashedPassword[0].logPassword);
+    console.log(hashedPassword[0].userPassword);
   } catch (error) {
     console.error("An error occurred:", error);
     res.status(500).json({ error: "An error occurred" });
@@ -134,7 +137,7 @@ app.post("/api/signin", async (req, res) => {
 
   const decryptedPassword = await bcrypt.compare(
     password,
-    hashedPassword[0].logPassword
+    hashedPassword[0].userPassword
   );
 
   if (decryptedPassword) {

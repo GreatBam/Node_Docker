@@ -55,21 +55,25 @@ async function Login(mail, password) {
     console.log("Successfully loged in!", result);
     window.location.href = "http://localhost:3000/web/home.html";
   } else {
-    console.log("Failed to add user");
+    console.log("Login failed!");
   }
 }
 
 signupButton.onclick = () => {
-  const username = document.getElementById("username").value;
-  const userlastname = document.getElementById("userlastname").value;
-  const userdob = document.getElementById("userdob").value;
-  const email = document.getElementById("mailup").value;
-  const password = document.getElementById("passwdup").value;
-  addAccount(username, userlastname, userdob, email, password);
+    console.log("signupButton.onclick");
+    const username = document.getElementById("username").value;
+    const userlastname = document.getElementById("userlastname").value;
+    const userdob = document.getElementById("userdob").value;
+    const email = document.getElementById("mailup").value;
+    const password = document.getElementById("passwdup").value;
+    console.log(username, userlastname, userdob, email, password);
+    addAccount(username, userlastname, userdob, email, password);
 };
 
 siginButton.onclick = () => {
+    console.log("signinButton.onclick");
   const email = document.getElementById("mailin").value;
   const password = document.getElementById("passwdin").value;
+  console.log(email, password);
   Login(email, password);
 };
