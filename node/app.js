@@ -88,7 +88,7 @@ app.post("/api/signup", async (req, res) => {
     return res.status(400).json({ error: "All fields are required" });
   }
 
-  const getPassword = `SELECT userMail FROM t_users WHERE userMail='${mail}'`;
+  const getPassword = `SELECT * FROM t_users WHERE userMail='${mail}'`;
   try {
     const result = await connection.query(getPassword);
     if (result.length > 0) {
