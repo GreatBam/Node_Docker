@@ -107,7 +107,9 @@ app.post("/api/signin", async (req, res) => {
   if (!email || !password) {
     return res.status(400).json({ error: "Email and password are required" });
   }
-  
+
+  const insertAccount = `INSERT INTO t_logs (email, password) VALUES ('${email}), ('${password}')`;
+
 });
 
 app.listen(port, () => {
