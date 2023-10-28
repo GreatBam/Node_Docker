@@ -57,9 +57,12 @@ async function Login(email, password) {
 }
 
 signupButton.onclick = () => {
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("passwd").value;
-  addAccount(email, password);
+  const username = document.getElementById("username").value;
+  const userlastname = document.getElementById("userlastname").value;
+  const userdob = document.getElementById("userdob").value;
+  const email = document.getElementById("emailup").value;
+  const password = document.getElementById("passwdup").value;
+  addAccount(username, userlastname, userdob, email, password);
 };
 
 siginButton.onclick = () => {
