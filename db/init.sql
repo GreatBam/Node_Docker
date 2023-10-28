@@ -16,7 +16,5 @@ CREATE TABLE `Data`.`t_logs` (
   `logMail` VARCHAR(255) NOT NULL,
   `logPassword` VARCHAR(255) NOT NULL,
   `creationDate` DATETIME NOT NULL,
-  `FKidUser` INT NOT NULL,
   PRIMARY KEY (`idLog`),
-  FOREIGN KEY (FKidUser) REFERENCES t_users(idUser)
 );
