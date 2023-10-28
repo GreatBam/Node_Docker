@@ -15,6 +15,5 @@ CREATE TABLE `Data`.`t_logs` (
   `idLog` INT NOT NULL AUTO_INCREMENT,
   `logMail` VARCHAR(255) NOT NULL,
   `logPassword` VARCHAR(255) NOT NULL,
-  `creationDate` DATETIME NOT NULL,
   PRIMARY KEY (`idLog`),
 );
